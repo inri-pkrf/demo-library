@@ -13,20 +13,19 @@ function App() {
   const location = useLocation();
   const [currentPageName, setCurrentPageName] = useState('Home');
 
+ 
+
   useEffect(() => {
-    // Extract page name from pathname
     const pathSegments = location.pathname.split('/').filter(Boolean);
     let pageName = 'Home'; // Default to Home
     if (pathSegments.length > 0) {
       pageName = pathSegments[0].charAt(0).toUpperCase() + pathSegments[0].slice(1);
     }
-    // Handle case where 'simulation' might be 'Simulation' etc.
-    // This is a simple heuristic; more robust mapping might be needed for complex routes
+    // Normalize specific names
     if (pageName.toLowerCase() === 'aiengines') pageName = 'AIEngines';
     if (pageName.toLowerCase() === 'promptgenerator') pageName = 'PromptGenerator';
-    
-    setCurrentPageName(pageName);
 
+    setCurrentPageName(pageName);
   }, [location]);
 
   return (

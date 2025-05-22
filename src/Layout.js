@@ -10,7 +10,8 @@ export default function Layout({ children, currentPageName }) {
                     <div >
                         <img
                             src={process.env.PUBLIC_URL + '/whiteLogo.png'}
-                            className="App-logo" />          </div>
+                            className="App-logo" />
+                    </div>
                     {/* <span className="logo-text">EmergencySim</span> */}
                 </div>
 
@@ -144,7 +145,7 @@ export default function Layout({ children, currentPageName }) {
           }
           
           .App-logo {
-            width: 36px;
+            width: 10vw;
           }
           
           
