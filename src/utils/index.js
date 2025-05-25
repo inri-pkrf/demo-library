@@ -1,9 +1,7 @@
 // src/utils/index.js
-export const createPageUrl = (pageNameWithParams) => {
+export const createPageUrl = (pageNameWithParams = '') => {
   const [pageName, queryString] = pageNameWithParams.split('?');
-  let path = `/${pageName.toLowerCase()}`;
-  if (pageName === 'Home') {
-    path = '/';
-  }
+  let path = pageName ? `/${pageName.toLowerCase()}` : '/';
+
   return queryString ? `${path}?${queryString}` : path;
 };

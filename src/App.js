@@ -13,9 +13,8 @@ function App() {
   const location = useLocation();
   const [currentPageName, setCurrentPageName] = useState('Home');
 
- 
-
   useEffect(() => {
+    console.log('Initial location.pathname:', location.pathname); // הוספה
     const pathSegments = location.pathname.split('/').filter(Boolean);
     let pageName = 'Home'; // Default to Home
     if (pathSegments.length > 0) {
@@ -38,8 +37,6 @@ function App() {
         <Route path="/aiengines" element={<AIEngines />} />
         <Route path="/promptgenerator" element={<PromptGenerator />} />
         <Route path="/contact" element={<Contact />} />
-        {/* Add a catch-all or 404 page if desired */}
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </Layout>
   );

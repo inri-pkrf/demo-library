@@ -1,0 +1,115 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    direction: rtl;
+}
+
+.hero-section {
+    text-align: center;
+    margin: 2rem 0 4rem;
+}
+
+.hero-section h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Karantina', cursive;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-medium);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    direction: rtl;
+}
+
+.feature-card {
+    background-color: var(--background-medium);
+    border-radius: var(--border-radius);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.search-icon {
+    background: linear-gradient(135deg, #3366ff, #00ccff);
+}
+
+.ai-icon {
+    background: linear-gradient(135deg, #ff3366, #ff6633);
+}
+
+.prompt-icon {
+    background: linear-gradient(135deg, #9900cc, #cc00ff);
+}
+
+.search-icon:before,
+.ai-icon:before,
+.prompt-icon:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.feature-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.card-action {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: auto;
+    transition: color var(--transition-speed) ease;
+    direction: rtl;
+}
+
+.feature-card:hover .card-action {
+    color: var(--primary-light);
+}

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
+import '../css/Home.css'
 
 export default function Home() {
+    console.log("🏠 Home page rendered");
+
     return (
         <div className="home-container">
+
             <div className="hero-section">
                 <h1>
                     ספריית הדמיות
@@ -25,7 +29,7 @@ export default function Home() {
 
                             ניתן למיין את הקבצים בכמה דרכים, לפי התאמה למידות מסכים, רזולוציות שונות, סוג הקובץ, הרשות, מחוז ועוד.
                         </p>
-                        <span className="card-action">Browse Library →</span>
+                        <span className="card-action">→ ראה את הסיפרייה </span>
                     </Link>
 
                     <Link to={createPageUrl('AIEngines')} className="feature-card">
@@ -36,7 +40,7 @@ export default function Home() {
                         <p>
                             הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר
                         </p>
-                        <span className="card-action">Explore AI Tools →</span>
+                        <span className="card-action">→ חקור מנועי AI </span>
                     </Link>
 
                     <Link to={createPageUrl('PromptGenerator')} className="feature-card">
@@ -47,7 +51,7 @@ export default function Home() {
                         <p>
                             הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר הסבר
                         </p>
-                        <span className="card-action">Generate Prompts →</span>
+                        <span className="card-action">→ חקור מחוללים </span>
                     </Link>
                 </div>
             </div>

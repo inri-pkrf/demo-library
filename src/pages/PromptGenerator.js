@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/PromptGenerator.css'
 
 export default function PromptGenerator() {
   const [municipality, setMunicipality] = useState('');
