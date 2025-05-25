@@ -1,12 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
-import simulationsData from '../Data/simulationsData.js';
+import danSimulations from '../Data/danSimulations.js';
+import northSimulations from '../Data/northSimulations.js';
+// אם יש עוד מחוזות - ייבא כאן
+
 import '../css/Simulation.css';
+
+// מוסיף תג מחוז אם חסר, כמו ב-Search
+const addMahozTag = (simulations, mahozName) =>
+    simulations.map(sim => ({
+        ...sim,
+        tags: {
+            ...sim.tags,
+            mahoz: sim.tags?.mahoz?.length ? sim.tags.mahoz : [mahozName]
+        }
+    }));
+
+// מאחד את כל הדאטה עם תגית מחוז
+const allSimulations = [
+    ...addMahozTag(danSimulations, "דן"),
+    ...addMahozTag(northSimulations, "צפון"),
+    // הוסף פה מחוזות נוספים אם יש
+];
 
 export default function Simulation() {
     const urlParams = new URLSearchParams(window.location.search);
-    const simulationId = parseInt(urlParams.get('id') || '1');
+    const simulationId = urlParams.get('id') || allSimulations[0].id;
     const [simulation, setSimulation] = useState(null);
     const [relatedSimulations, setRelatedSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -15,11 +35,11 @@ export default function Simulation() {
         setLoading(true);
 
         setTimeout(() => {
-            const currentSimulation = simulationsData.find(sim => sim.id === simulationId) || simulationsData[0];
+            const currentSimulation = allSimulations.find(sim => sim.id === simulationId) || allSimulations[0];
             setSimulation(currentSimulation);
 
             if (currentSimulation) {
-                const related = simulationsData
+                const related = allSimulations
                     .filter(sim => sim.id !== currentSimulation.id)
                     .filter(sim => {
                         const emergencyOverlap = sim.tags.emergency.some(tag =>
@@ -63,11 +83,15 @@ export default function Simulation() {
     return (
         <div className="simulation-page">
             <Link to={createPageUrl('Search')} className="back-button">
-                ← חזרה לחיפוש
+                → חזרה לחיפוש
             </Link>
 
             <div className="simulation-header">
                 <h1>{simulation.title}</h1>
+                <div className='simulation-location'>
+                    <img className='location-icon' src={`${process.env.PUBLIC_URL}/gps.png`} alt="מיקום" />
+                    <span className='location-name'> מיקום: {simulation.location}</span>
+                </div>
                 <div className="tag-container">
                     {simulation.tags.emergency.map(tag => (
                         <span className="tag emergency-tag" key={`emergency-${tag}`}>{tag}</span>
@@ -90,9 +114,10 @@ export default function Simulation() {
             <div className="simulation-content">
                 <div className="video-container">
                     <video
+                        className="video"
                         controls
                         style={{ width: '100%', cursor: 'pointer' }}
-                        src={simulation.videoUrl}
+                        src={`${process.env.PUBLIC_URL}${simulation.videoUrl}`}
                     >
                         הדפדפן שלך לא תומך בווידאו.
                     </video>
@@ -120,7 +145,23 @@ export default function Simulation() {
                         {relatedSimulations.map(sim => (
                             <Link to={createPageUrl(`Simulation?id=${sim.id}`)} className="related-card" key={sim.id}>
                                 <div className="related-thumbnail">
-                                    <img src={sim.thumbnail} alt={sim.title} />
+                                    {/* אם יש תמונת מיני-תמונה */}
+                                    {sim.thumbnail ? (
+                                        <img src={sim.thumbnail} alt={sim.title} />
+                                    ) : (
+                                        <video
+                                            src={`${process.env.PUBLIC_URL}${sim.videoUrl}`}
+                                            style={{ width: '100%', height: 'auto', objectFit: 'cover', pointerEvents: 'none' }}
+                                            preload="metadata"
+                                            onLoadedData={(e) => {
+                                                try {
+                                                    e.currentTarget.currentTime = 1;
+                                                } catch (err) {
+                                                    console.error("Can't seek to frame:", err);
+                                                }
+                                            }}
+                                        />
+                                    )}
                                 </div>
                                 <div className="related-info">
                                     <h3>{sim.title}</h3>

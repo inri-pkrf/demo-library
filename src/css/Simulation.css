@@ -2,6 +2,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      direction: rtl;
   }
 
   .back-button {
@@ -26,6 +27,26 @@
       margin-bottom: 1rem;
   }
 
+  .simulation-location {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+  }
+
+  .location-icon {
+      width: 3vmin;
+      height: auto;
+      margin: 0;
+  }
+
+  .location-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+  }
+
+
   .tag-container {
       display: flex;
       flex-wrap: wrap;
@@ -38,14 +59,21 @@
       gap: 2rem;
   }
 
-.video-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px; /* לדוגמה, למקסימום רוחב */
-  border-radius: var(--border-radius);
-  background-color: var(--background-medium);
-  overflow: hidden;
-}
+  .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 800px;
+      /* לדוגמה, למקסימום רוחב */
+      border-radius: var(--border-radius);
+      background-color: var(--background-medium);
+      overflow: hidden;
+  }
+
+  .video {
+      width: 100%;
+      height: 100%;
+  }
 
   .video-container iframe {
       position: absolute;

@@ -8,13 +8,13 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    direction: rtl; /* ← הפיכת כיוון */
+    direction: rtl; 
 }
 .nav-logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    direction: ltr; /* ← שומר שהטקסט של הלוגו לא יהפוך */
+    direction: ltr; 
 }
 
  .App-logo {

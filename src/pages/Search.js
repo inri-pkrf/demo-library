@@ -2,13 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { createPageUrl } from '../utils';
 import { Link } from 'react-router-dom';
 import TagFilter from '../components/TagFilter';
-import '../css/Search.css'
-import simulationsData from '../Data/simulationsData.js';
+import '../css/Search.css';
 
+import danSimulations from '../Data/danSimulations.js';
+import northSimulations from '../Data/northSimulations.js';
+
+// מוסיף תג מחוז אם חסר
+const addMahozTag = (simulations, mahozName) =>
+    simulations.map(sim => ({
+        ...sim,
+        tags: {
+            ...sim.tags,
+            mahoz: sim.tags?.mahoz?.length ? sim.tags.mahoz : [mahozName]
+        }
+    }));
 
 export default function Search() {
-    // Sample simulation data - in a real app would come from an entity
-    const [simulations] = useState(simulationsData);
+    const simulationsData = [
+        ...addMahozTag(danSimulations, "דן"),
+        ...addMahozTag(northSimulations, "צפון")
+    ];
+
     const [filteredSimulations, setFilteredSimulations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilters, setActiveFilters] = useState({
@@ -19,7 +33,6 @@ export default function Search() {
         videoType: []
     });
 
-    // Filter categories and options
     const filterOptions = {
         emergency: ["נפילת טיל", "שיטפון", "שריפה", "צונאמי", "אתר הרס", "מלחמה", 'כטב"מים'],
         damage: ["בית חולים", "בית ספר", "בניין מגורים", "כביש מרכזי"],
@@ -33,16 +46,14 @@ export default function Search() {
     }, [searchTerm, activeFilters]);
 
     const filterSimulations = () => {
-        let filtered = [...simulations];
+        let filtered = [...simulationsData];
 
-        // Filter by search term
         if (searchTerm) {
             filtered = filtered.filter(sim =>
                 sim.title.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
-        // Filter by tags
         Object.keys(activeFilters).forEach(category => {
             if (activeFilters[category].length > 0) {
                 filtered = filtered.filter(sim =>
@@ -59,15 +70,11 @@ export default function Search() {
     const handleTagToggle = (category, tag) => {
         setActiveFilters(prev => {
             const newFilters = { ...prev };
-
             if (newFilters[category].includes(tag)) {
-                // Remove tag if already selected
                 newFilters[category] = newFilters[category].filter(t => t !== tag);
             } else {
-                // Add tag if not selected
                 newFilters[category] = [...newFilters[category], tag];
             }
-
             return newFilters;
         });
     };
@@ -82,7 +89,7 @@ export default function Search() {
                     <input
                         type="text"
                         className="search-input"
-                        placeholder="חפש סימולציות..."
+                        placeholder="חפש לפי כותרת הסימולציה..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -96,7 +103,15 @@ export default function Search() {
                     {Object.values(activeFilters).some(arr => arr.length > 0) && (
                         <button
                             className="clear-filters-btn"
-                            onClick={() => setActiveFilters({ emergency: [], damage: [], screenSize: [], mahoz: [], videoType: [] })}
+                            onClick={() =>
+                                setActiveFilters({
+                                    emergency: [],
+                                    damage: [],
+                                    screenSize: [],
+                                    mahoz: [],
+                                    videoType: []
+                                })
+                            }
                         >
                             נקה את כל התגיות
                         </button>
@@ -104,45 +119,22 @@ export default function Search() {
                 </div>
 
                 <div className="filters-container">
-                    <TagFilter
-                        title="סוג מצב חירום"
-                        category="emergency"
-                        tags={filterOptions.emergency}
-                        activeFilters={activeFilters.emergency}
-                        onToggle={handleTagToggle}
-                    />
-
-                    <TagFilter
-                        title="סוג פגיעה"
-                        category="damage"
-                        tags={filterOptions.damage}
-                        activeFilters={activeFilters.damage}
-                        onToggle={handleTagToggle}
-                    />
-
-                    <TagFilter
-                        title="גודל מסך"
-                        category="screenSize"
-                        tags={filterOptions.screenSize}
-                        activeFilters={activeFilters.screenSize}
-                        onToggle={handleTagToggle}
-                    />
-
-                    <TagFilter
-                        title="שם מחוז"
-                        category="mahoz"
-                        tags={filterOptions.mahoz}
-                        activeFilters={activeFilters.mahoz}
-                        onToggle={handleTagToggle}
-                    />
-
-                    <TagFilter
-                        title="סוג סרטון"
-                        category="videoType"
-                        tags={filterOptions.videoType}
-                        activeFilters={activeFilters.videoType}
-                        onToggle={handleTagToggle}
-                    />
+                    {Object.entries(filterOptions).map(([category, tags]) => (
+                        <TagFilter
+                            key={category}
+                            title={{
+                                emergency: "סוג מצב חירום",
+                                damage: "סוג פגיעה",
+                                screenSize: "גודל מסך",
+                                mahoz: "שם מחוז",
+                                videoType: "סוג סרטון"
+                            }[category]}
+                            category={category}
+                            tags={tags}
+                            activeFilters={activeFilters[category]}
+                            onToggle={handleTagToggle}
+                        />
+                    ))}
                 </div>
             </div>
 
@@ -154,7 +146,15 @@ export default function Search() {
                         <p>לא נמצאו סימולציות לפי התגיות שבחרת.</p>
                         <button
                             className="clear-filters-btn"
-                            onClick={() => setActiveFilters({ emergency: [], damage: [], screenSize: [], mahoz: [], videoType: [] })}
+                            onClick={() =>
+                                setActiveFilters({
+                                    emergency: [],
+                                    damage: [],
+                                    screenSize: [],
+                                    mahoz: [],
+                                    videoType: []
+                                })
+                            }
                         >
                             נקה מסננים
                         </button>
@@ -164,15 +164,26 @@ export default function Search() {
                         {filteredSimulations.map(simulation => (
                             <Link to={createPageUrl(`Simulation?id=${simulation.id}`)} className="simulation-card" key={simulation.id}>
                                 <div className="simulation-thumbnail">
-                                    <img src={simulation.thumbnail} alt={simulation.title} />
+                                    <video
+                                        src={`${process.env.PUBLIC_URL}${simulation.videoUrl}`}
+                                        style={{ width: '100%', height: 'auto', objectFit: 'cover', pointerEvents: 'none' }}
+                                        preload="metadata"
+                                        onLoadedData={(e) => {
+                                            try {
+                                                e.currentTarget.currentTime = 1;
+                                            } catch (err) {
+                                                console.error("Can't seek to frame:", err);
+                                            }
+                                        }}
+                                    />
                                 </div>
                                 <div className="simulation-info">
                                     <h3>{simulation.title}</h3>
                                     <div className="simulation-tags">
-                                        {simulation.tags.emergency.slice(0, 2).map(tag => (
+                                        {simulation.tags.emergency?.slice(0, 2).map(tag => (
                                             <span className="tag emergency-tag" key={`emergency-${tag}`}>{tag}</span>
                                         ))}
-                                        {simulation.tags.damage.slice(0, 2).map(tag => (
+                                        {simulation.tags.damage?.slice(0, 2).map(tag => (
                                             <span className="tag damage-tag" key={`damage-${tag}`}>{tag}</span>
                                         ))}
                                         {simulation.tags.mahoz?.slice(0, 2).map(tag => (

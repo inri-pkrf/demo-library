@@ -23,7 +23,7 @@ export default function Layout({ children, currentPageName }) {
                         <Link to={createPageUrl('Search')}>חיפוש סימולציות </Link>
                     </li>
                     <li className={currentPageName === 'AIEngines' ? 'active' : ''}>
-                        <Link to={createPageUrl('AIEngines')}>AI מנועי</Link>
+                        <Link to={createPageUrl('AIEngines')}> מנועי AI</Link>
                     </li>
                     <li className={currentPageName === 'PromptGenerator' ? 'active' : ''}>
                         <Link to={createPageUrl('PromptGenerator')}>מחולל פרומפטים</Link>
