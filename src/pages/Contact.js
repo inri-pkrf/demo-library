@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <div className="contact-page">
       <div className="contact-header">
-        <h1>Contact Information</h1>
+        <h1>יצירת קשר</h1>
         <p>Get in touch with the creator of the Emergency Simulation Library</p>
       </div>
       
