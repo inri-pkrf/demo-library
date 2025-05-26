@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
+
 import '../css/Simulation.css';
 
 import danSimulations from '../Data/danSimulations.js';
@@ -37,6 +38,11 @@ export default function Simulation() {
     const [simulation, setSimulation] = useState(null);
     const [relatedSimulations, setRelatedSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    function getDriveId(url) {
+        const match = url.match(/id=([a-zA-Z0-9_-]+)/);
+        return match ? match[1] : '';
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -117,14 +123,12 @@ export default function Simulation() {
 
             <div className="simulation-content">
                 <div className="video-container">
-                    <video
+                    <iframe
                         className="video"
-                        controls
-                        style={{ width: '100%', cursor: 'pointer' }}
-                        src={`${process.env.PUBLIC_URL}${simulation.videoUrl}`}
-                    >
-                        הדפדפן שלך לא תומך בווידאו.
-                    </video>
+                        src={`https://drive.google.com/file/d/${getDriveId(simulation.videoUrl)}/preview`}
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                    />
                 </div>
 
                 <div className="simulation-details">
@@ -153,7 +157,7 @@ export default function Simulation() {
                                         <img src={sim.thumbnail} alt={sim.title} />
                                     ) : (
                                         <video
-                                            src={`${process.env.PUBLIC_URL}${sim.videoUrl}`}
+                                            src={simulation.videoUrl}
                                             style={{ width: '100%', height: 'auto', objectFit: 'cover', pointerEvents: 'none' }}
                                             preload="metadata"
                                             onLoadedData={(e) => {

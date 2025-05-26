@@ -11,6 +11,11 @@ import southSimulations from '../Data/southSimulations.js';
 import jerusalemSimulations from '../Data/jerusalemSimulations.js';
 import pkmazSimulations from '../Data/pkmazSimulations.js';
 
+
+function getFileIdFromUrl(url) {
+    const urlObj = new URL(url);
+    return urlObj.searchParams.get('id');
+}
 // מוסיף תג מחוז אם חסר
 const addMahozTag = (simulations, mahozName) =>
     simulations.map(sim => ({
@@ -22,14 +27,14 @@ const addMahozTag = (simulations, mahozName) =>
     }));
 
 export default function Search() {
-   const simulationsData = [
-    ...addMahozTag(danSimulations, "דן"),
-    ...addMahozTag(haifaSimulations, "חיפה"),
-    ...addMahozTag(northSimulations, "צפון"),
-    ...addMahozTag(southSimulations, "דרום"),
-    ...addMahozTag(jerusalemSimulations, "ירושלים והמרכז"),
-    ...addMahozTag(pkmazSimulations, 'פקמ"ז')
-];
+    const simulationsData = [
+        ...addMahozTag(danSimulations, "דן"),
+        ...addMahozTag(haifaSimulations, "חיפה"),
+        ...addMahozTag(northSimulations, "צפון"),
+        ...addMahozTag(southSimulations, "דרום"),
+        ...addMahozTag(jerusalemSimulations, "ירושלים והמרכז"),
+        ...addMahozTag(pkmazSimulations, 'פקמ"ז')
+    ];
 
     const [filteredSimulations, setFilteredSimulations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -169,41 +174,57 @@ export default function Search() {
                     </div>
                 ) : (
                     <div className="simulations-grid">
-                        {filteredSimulations.map(simulation => (
-                            <Link to={createPageUrl(`Simulation?id=${simulation.id}`)} className="simulation-card" key={simulation.id}>
-                                <div className="simulation-thumbnail">
-                                    <video
-                                        src={`${process.env.PUBLIC_URL}${simulation.videoUrl}`}
-                                        style={{ width: '100%', height: 'auto', objectFit: 'cover', pointerEvents: 'none' }}
-                                        preload="metadata"
-                                        onLoadedData={(e) => {
-                                            try {
-                                                e.currentTarget.currentTime = 1;
-                                            } catch (err) {
-                                                console.error("Can't seek to frame:", err);
-                                            }
-                                        }}
-                                    />
-                                </div>
-                                <div className="simulation-info">
-                                    <h3>{simulation.title}</h3>
-                                    <div className="simulation-tags">
-                                        {simulation.tags.emergency?.slice(0, 2).map(tag => (
-                                            <span className="tag emergency-tag" key={`emergency-${tag}`}>{tag}</span>
-                                        ))}
-                                        {simulation.tags.damage?.slice(0, 2).map(tag => (
-                                            <span className="tag damage-tag" key={`damage-${tag}`}>{tag}</span>
-                                        ))}
-                                        {simulation.tags.mahoz?.slice(0, 2).map(tag => (
-                                            <span className="tag mahoz-tag" key={`mahoz-${tag}`}>{tag}</span>
-                                        ))}
-                                        {simulation.tags.videoType?.slice(0, 2).map(tag => (
-                                            <span className="tag videoType-tag" key={`videoType-${tag}`}>{tag}</span>
-                                        ))}
+                        {filteredSimulations.map(simulation => {
+                            const fileId = simulation.videoUrl ? getFileIdFromUrl(simulation.videoUrl) : null;
+                            return (
+                                <Link
+                                    key={simulation.id}
+                                    to={createPageUrl(`Simulation?id=${simulation.id}`)}
+                                    className="simulation-card"
+                                >
+                                    <div className="simulation-thumbnail" style={{ width: '100%', height: '200px' }}>
+                                        {fileId ? (
+                                            <iframe
+                                                src={`https://drive.google.com/file/d/${fileId}/preview`}
+                                                width="100%"
+                                                height="100%"
+                                                allow="autoplay"
+                                                allowFullScreen
+                                                title={`Preview of ${simulation.title}`}
+                                                style={{ pointerEvents: 'none' }}  
+                                            />
+                                        ) : (
+                                            <p>אין תצוגת וידאו זמינה</p>
+                                        )}
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                    <div className="simulation-info">
+                                        <h3>{simulation.title}</h3>
+                                        <div className="simulation-tags">
+                                            {simulation.tags.emergency?.slice(0, 2).map(tag => (
+                                                <span className="tag emergency-tag" key={`emergency-${tag}`}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                            {simulation.tags.damage?.slice(0, 2).map(tag => (
+                                                <span className="tag damage-tag" key={`damage-${tag}`}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                            {simulation.tags.mahoz?.slice(0, 2).map(tag => (
+                                                <span className="tag mahoz-tag" key={`mahoz-${tag}`}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                            {simulation.tags.videoType?.slice(0, 2).map(tag => (
+                                                <span className="tag videoType-tag" key={`videoType-${tag}`}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
                 )}
             </div>
