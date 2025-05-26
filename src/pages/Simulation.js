@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../utils';
-import danSimulations from '../Data/danSimulations.js';
-import northSimulations from '../Data/northSimulations.js';
-// אם יש עוד מחוזות - ייבא כאן
-
 import '../css/Simulation.css';
 
-// מוסיף תג מחוז אם חסר, כמו ב-Search
+import danSimulations from '../Data/danSimulations.js';
+import haifaSimulations from '../Data/haifaSimulations.js';
+import northSimulations from '../Data/northSimulations.js';
+import southSimulations from '../Data/southSimulations.js';
+import jerusalemSimulations from '../Data/jerusalemSimulations.js';
+import pkmazSimulations from '../Data/pkmazSimulations.js';
+
+// מוסיף תג מחוז אם חסר
 const addMahozTag = (simulations, mahozName) =>
     simulations.map(sim => ({
         ...sim,
@@ -17,16 +20,20 @@ const addMahozTag = (simulations, mahozName) =>
         }
     }));
 
-// מאחד את כל הדאטה עם תגית מחוז
+// מאחד את כל הסימולציות
 const allSimulations = [
     ...addMahozTag(danSimulations, "דן"),
+    ...addMahozTag(haifaSimulations, "חיפה"),
     ...addMahozTag(northSimulations, "צפון"),
-    // הוסף פה מחוזות נוספים אם יש
+    ...addMahozTag(southSimulations, "דרום"),
+    ...addMahozTag(jerusalemSimulations, "ירושלים והמרכז"),
+    ...addMahozTag(pkmazSimulations, "פקמ\"ז")
 ];
 
 export default function Simulation() {
     const urlParams = new URLSearchParams(window.location.search);
-    const simulationId = urlParams.get('id') || allSimulations[0].id;
+    const simulationId = urlParams.get('id') || allSimulations[0]?.id;
+
     const [simulation, setSimulation] = useState(null);
     const [relatedSimulations, setRelatedSimulations] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -35,21 +42,16 @@ export default function Simulation() {
         setLoading(true);
 
         setTimeout(() => {
-            const currentSimulation = allSimulations.find(sim => sim.id === simulationId) || allSimulations[0];
-            setSimulation(currentSimulation);
+            const current = allSimulations.find(sim => sim.id === simulationId) || allSimulations[0];
+            setSimulation(current);
 
-            if (currentSimulation) {
+            if (current) {
                 const related = allSimulations
-                    .filter(sim => sim.id !== currentSimulation.id)
-                    .filter(sim => {
-                        const emergencyOverlap = sim.tags.emergency.some(tag =>
-                            currentSimulation.tags.emergency.includes(tag)
-                        );
-                        const damageOverlap = sim.tags.damage.some(tag =>
-                            currentSimulation.tags.damage.includes(tag)
-                        );
-                        return emergencyOverlap || damageOverlap;
-                    })
+                    .filter(sim => sim.id !== current.id)
+                    .filter(sim =>
+                        (sim.tags.emergency || []).some(tag => (current.tags.emergency || []).includes(tag)) ||
+                        (sim.tags.damage || []).some(tag => (current.tags.damage || []).includes(tag))
+                    )
                     .slice(0, 3);
 
                 setRelatedSimulations(related);
@@ -83,29 +85,31 @@ export default function Simulation() {
     return (
         <div className="simulation-page">
             <Link to={createPageUrl('Search')} className="back-button">
-                → חזרה לחיפוש
+                ← חזרה לחיפוש
             </Link>
 
             <div className="simulation-header">
                 <h1>{simulation.title}</h1>
-                <div className='simulation-location'>
-                    <img className='location-icon' src={`${process.env.PUBLIC_URL}/gps.png`} alt="מיקום" />
-                    <span className='location-name'> מיקום: {simulation.location}</span>
-                </div>
+                {simulation.location && (
+                    <div className='simulation-location'>
+                        <img className='location-icon' src={`${process.env.PUBLIC_URL}/gps.png`} alt="מיקום" />
+                        <span className='location-name'>מיקום: {simulation.location}</span>
+                    </div>
+                )}
                 <div className="tag-container">
-                    {simulation.tags.emergency.map(tag => (
+                    {(simulation.tags.emergency || []).map(tag => (
                         <span className="tag emergency-tag" key={`emergency-${tag}`}>{tag}</span>
                     ))}
-                    {simulation.tags.damage.map(tag => (
+                    {(simulation.tags.damage || []).map(tag => (
                         <span className="tag damage-tag" key={`damage-${tag}`}>{tag}</span>
                     ))}
-                    {simulation.tags.screenSize.map(tag => (
+                    {(simulation.tags.screenSize || []).map(tag => (
                         <span className="tag screen-tag" key={`screen-${tag}`}>{tag}</span>
                     ))}
-                    {simulation.tags.mahoz?.map(tag => (
+                    {(simulation.tags.mahoz || []).map(tag => (
                         <span className="tag mahoz-tag" key={`mahoz-${tag}`}>{tag}</span>
                     ))}
-                    {simulation.tags.videoType?.map(tag => (
+                    {(simulation.tags.videoType || []).map(tag => (
                         <span className="tag videoType-tag" key={`video-${tag}`}>{tag}</span>
                     ))}
                 </div>
@@ -145,7 +149,6 @@ export default function Simulation() {
                         {relatedSimulations.map(sim => (
                             <Link to={createPageUrl(`Simulation?id=${sim.id}`)} className="related-card" key={sim.id}>
                                 <div className="related-thumbnail">
-                                    {/* אם יש תמונת מיני-תמונה */}
                                     {sim.thumbnail ? (
                                         <img src={sim.thumbnail} alt={sim.title} />
                                     ) : (
@@ -166,7 +169,7 @@ export default function Simulation() {
                                 <div className="related-info">
                                     <h3>{sim.title}</h3>
                                     <div className="related-tags">
-                                        {sim.tags.emergency.slice(0, 2).map(tag => (
+                                        {(sim.tags.emergency || []).slice(0, 2).map(tag => (
                                             <span className="tag emergency-tag small" key={`rel-emergency-${tag}`}>{tag}</span>
                                         ))}
                                     </div>

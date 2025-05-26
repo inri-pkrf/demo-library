@@ -5,7 +5,11 @@ import TagFilter from '../components/TagFilter';
 import '../css/Search.css';
 
 import danSimulations from '../Data/danSimulations.js';
+import haifaSimulations from '../Data/haifaSimulations.js';
 import northSimulations from '../Data/northSimulations.js';
+import southSimulations from '../Data/southSimulations.js';
+import jerusalemSimulations from '../Data/jerusalemSimulations.js';
+import pkmazSimulations from '../Data/pkmazSimulations.js';
 
 // מוסיף תג מחוז אם חסר
 const addMahozTag = (simulations, mahozName) =>
@@ -18,10 +22,14 @@ const addMahozTag = (simulations, mahozName) =>
     }));
 
 export default function Search() {
-    const simulationsData = [
-        ...addMahozTag(danSimulations, "דן"),
-        ...addMahozTag(northSimulations, "צפון")
-    ];
+   const simulationsData = [
+    ...addMahozTag(danSimulations, "דן"),
+    ...addMahozTag(haifaSimulations, "חיפה"),
+    ...addMahozTag(northSimulations, "צפון"),
+    ...addMahozTag(southSimulations, "דרום"),
+    ...addMahozTag(jerusalemSimulations, "ירושלים והמרכז"),
+    ...addMahozTag(pkmazSimulations, 'פקמ"ז')
+];
 
     const [filteredSimulations, setFilteredSimulations] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
