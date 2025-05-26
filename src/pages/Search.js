@@ -13,9 +13,25 @@ import pkmazSimulations from '../Data/pkmazSimulations.js';
 
 
 function getFileIdFromUrl(url) {
-    const urlObj = new URL(url);
-    return urlObj.searchParams.get('id');
+    try {
+        const urlObj = new URL(url);
+        // מנסה למצוא מזהה מתוך הנתיב
+        const parts = urlObj.pathname.split('/');
+        const fileIndex = parts.indexOf('d');
+        if (fileIndex !== -1 && parts.length > fileIndex + 1) {
+            return parts[fileIndex + 1];
+        }
+        // אם לא מצא בנתיב, מחפש פרמטר id בשאילתה
+        const idParam = urlObj.searchParams.get('id');
+        if (idParam) {
+            return idParam;
+        }
+        return null;
+    } catch (e) {
+        return null;
+    }
 }
+
 // מוסיף תג מחוז אם חסר
 const addMahozTag = (simulations, mahozName) =>
     simulations.map(sim => ({

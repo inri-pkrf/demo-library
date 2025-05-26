@@ -40,8 +40,22 @@ export default function Simulation() {
     const [loading, setLoading] = useState(true);
 
     function getDriveId(url) {
-        const match = url.match(/id=([a-zA-Z0-9_-]+)/);
-        return match ? match[1] : '';
+        try {
+            const urlObj = new URL(url);
+            const parts = urlObj.pathname.split('/');
+            const fileIndex = parts.indexOf('d');
+            if (fileIndex !== -1 && parts.length > fileIndex + 1) {
+                return parts[fileIndex + 1];
+            }
+            // אם לא נמצא בנתיב, לנסות לקחת מהפרמטר 'id' בשאילתה
+            const idParam = urlObj.searchParams.get('id');
+            if (idParam) {
+                return idParam;
+            }
+            return '';
+        } catch (e) {
+            return '';
+        }
     }
 
     useEffect(() => {
@@ -91,7 +105,7 @@ export default function Simulation() {
     return (
         <div className="simulation-page">
             <Link to={createPageUrl('Search')} className="back-button">
-                ← חזרה לחיפוש
+                → חזרה לחיפוש
             </Link>
 
             <div className="simulation-header">
@@ -152,22 +166,19 @@ export default function Simulation() {
                     <div className="related-grid">
                         {relatedSimulations.map(sim => (
                             <Link to={createPageUrl(`Simulation?id=${sim.id}`)} className="related-card" key={sim.id}>
-                                <div className="related-thumbnail">
-                                    {sim.thumbnail ? (
-                                        <img src={sim.thumbnail} alt={sim.title} />
-                                    ) : (
-                                        <video
-                                            src={simulation.videoUrl}
-                                            style={{ width: '100%', height: 'auto', objectFit: 'cover', pointerEvents: 'none' }}
-                                            preload="metadata"
-                                            onLoadedData={(e) => {
-                                                try {
-                                                    e.currentTarget.currentTime = 1;
-                                                } catch (err) {
-                                                    console.error("Can't seek to frame:", err);
-                                                }
-                                            }}
+                                <div className="related-thumbnail" style={{ width: '100%', height: '200px' }}>
+                                    {sim.videoUrl ? (
+                                        <iframe
+                                            src={`https://drive.google.com/file/d/${getDriveId(sim.videoUrl)}/preview`}
+                                            width="100%"
+                                            height="100%"
+                                            allow="autoplay"
+                                            allowFullScreen
+                                            title={`Preview of ${sim.title}`}
+                                            style={{ pointerEvents: 'none' }}
                                         />
+                                    ) : (
+                                        <p>אין תצוגת וידאו זמינה</p>
                                     )}
                                 </div>
                                 <div className="related-info">
