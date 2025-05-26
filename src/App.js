@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './Layout'; // Your Layout component
+import { HashRouter as Router, Route, Routes, useLocation } from 'react-router-dom'; 
+import Layout from './Layout'; 
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Simulation from './pages/Simulation';
 import AIEngines from './pages/AIEngines';
 import PromptGenerator from './pages/PromptGenerator';
 import Contact from './pages/Contact';
-import './App.css'; // We'll move the styles here
+import './App.css'; 
 
 function App() {
   const location = useLocation();
