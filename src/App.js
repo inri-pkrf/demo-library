@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './Layout';
+import Layout from './Layout'; // Your Layout component
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Simulation from './pages/Simulation';
 import AIEngines from './pages/AIEngines';
 import PromptGenerator from './pages/PromptGenerator';
 import Contact from './pages/Contact';
-import './App.css';
+import './App.css'; // We'll move the styles here
 
 function App() {
   const location = useLocation();
   const [currentPageName, setCurrentPageName] = useState('Home');
 
   useEffect(() => {
+    console.log('Initial location.pathname:', location.pathname); // הוספה
     const pathSegments = location.pathname.split('/').filter(Boolean);
-    let pageName = 'Home';
+    let pageName = 'Home'; // Default to Home
     if (pathSegments.length > 0) {
       pageName = pathSegments[0].charAt(0).toUpperCase() + pathSegments[0].slice(1);
     }
+    // Normalize specific names
     if (pageName.toLowerCase() === 'aiengines') pageName = 'AIEngines';
     if (pageName.toLowerCase() === 'promptgenerator') pageName = 'PromptGenerator';
 
