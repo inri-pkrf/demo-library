@@ -5,35 +5,35 @@ export default function AIEngines() {
   const aiEngines = [
     {
       id: 1,
-      title: "Scenario Generator",
-      description: "Create custom emergency scenarios based on your municipality's specific risk profile and infrastructure.",
+      title: "מחולל תרחישים",
+      description: "צרו תרחישי חירום מותאמים אישית בהתבסס על פרופיל הסיכון והתשתיות של הרשות שלכם.",
       icon: "scenario-icon"
     },
     {
       id: 2,
-      title: "Resource Optimizer",
-      description: "AI-powered tool that recommends optimal resource allocation during various emergency scenarios.",
+      title: "אופטימיזציית משאבים",
+      description: "כלי מבוסס AI שממליץ על הקצאת משאבים מיטבית בתרחישי חירום שונים.",
       icon: "resource-icon"
     },
     {
       id: 3,
-      title: "Response Evaluator",
-      description: "Analyze response times and decision-making during simulations to identify areas for improvement.",
+      title: "מעריך תגובות",
+      description: "מנתח זמני תגובה ותהליכי קבלת החלטות בתרגולים כדי לזהות נקודות לשיפור.",
       icon: "evaluator-icon"
     },
     {
       id: 4,
-      title: "Risk Predictor",
-      description: "Predictive analytics engine that forecasts potential emergencies based on historical data and current conditions.",
+      title: "מנבא סיכונים",
+      description: "מנוע אנליטיקה חזוי שמעריך תרחישי חירום פוטנציאליים על בסיס נתונים היסטוריים ותנאים עכשוויים.",
       icon: "predictor-icon"
     }
   ];
 
   return (
-    <div className="ai-engines-page">
+    <div className="ai-engines-page" dir="rtl">
       <div className="ai-header">
-        <h1>AI Engines</h1>
-        <p>Advanced artificial intelligence tools to enhance emergency preparedness and response</p>
+        <h1>מנועי בינה מלאכותית</h1>
+        <p>כלים מתקדמים מבוססי AI לשיפור המוכנות והתגובה למצבי חירום</p>
       </div>
       
       <div className="ai-tools-grid">
@@ -43,7 +43,7 @@ export default function AIEngines() {
             <h2>{engine.title}</h2>
             <p>{engine.description}</p>
             <button className="tool-button">
-              Access Tool
+              גישה לכלי
             </button>
           </div>
         ))}
@@ -51,21 +51,21 @@ export default function AIEngines() {
       
       <div className="ai-info-section">
         <div className="info-card">
-          <h2>How Our AI Engines Work</h2>
-          <p>Our AI engines utilize advanced machine learning algorithms trained on thousands of real-world emergency scenarios. These tools analyze patterns, predict outcomes, and optimize resource allocation to help municipalities prepare for and respond to emergencies more effectively.</p>
-          <p>All AI recommendations are based on established emergency management protocols and can be customized to your specific municipality's requirements and resources.</p>
+          <h2>איך פועלים מנועי ה-AI שלנו?</h2>
+          <p>מנועי הבינה המלאכותית שלנו משתמשים באלגוריתמים מתקדמים של למידת מכונה, שאומנו על אלפי תרחישי חירום מהעולם האמיתי. הכלים מנתחים דפוסים, חוזים תוצאות ומבצעים אופטימיזציה של הקצאת משאבים כדי לסייע לרשויות המקומיות להיערך ולהגיב טוב יותר למצבי חירום.</p>
+          <p>כל ההמלצות מבוססות על נהלי חירום מוכרים וניתנות להתאמה לצרכים ולמשאבים של הרשות המקומית שלכם.</p>
         </div>
         
         <div className="tech-showcase">
           <div className="tech-visual"></div>
           <div className="tech-specs">
-            <h3>Technical Specifications</h3>
+            <h3>מפרט טכני</h3>
             <ul>
-              <li>Neural network architecture with 12 specialized layers</li>
-              <li>Trained on 50,000+ historical emergency response cases</li>
-              <li>Real-time processing capabilities</li>
-              <li>Integrates with standard emergency management systems</li>
-              <li>Regular updates based on new data and scenarios</li>
+              <li>ארכיטקטורת רשת עצבית עם 12 שכבות מתמחות</li>
+              <li>אימון על יותר מ-50,000 מקרי תגובה לחירום</li>
+              <li>יכולת עיבוד בזמן אמת</li>
+              <li>שילוב עם מערכות ניהול חירום סטנדרטיות</li>
+              <li>עדכונים שוטפים בהתאם לנתונים ותרחישים חדשים</li>
             </ul>
           </div>
         </div>
