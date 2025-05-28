@@ -4,12 +4,14 @@ import { createPageUrl } from '../utils';
 
 import '../css/Simulation.css';
 
-import danSimulations from '../Data/danSimulations.js';
-import haifaSimulations from '../Data/haifaSimulations.js';
-import northSimulations from '../Data/northSimulations.js';
-import southSimulations from '../Data/southSimulations.js';
-import jerusalemSimulations from '../Data/jerusalemSimulations.js';
-import pkmazSimulations from '../Data/pkmazSimulations.js';
+import danSimulations from '../Data/districtFolder/danSimulations.js';
+import haifaSimulations from '../Data/districtFolder/haifaSimulations.js';
+import northSimulations from '../Data/districtFolder/northSimulations.js';
+import southSimulations from '../Data/districtFolder/southSimulations.js';
+import jerusalemSimulations from '../Data/districtFolder/jerusalemSimulations.js';
+import pkmazSimulations from '../Data/districtFolder/pkmazSimulations.js';
+// import aiSimulationData from '../Data/otherFolder/aiSimulationData.js';
+
 
 // מוסיף תג מחוז אם חסר
 const addMahozTag = (simulations, mahozName) =>
@@ -23,12 +25,12 @@ const addMahozTag = (simulations, mahozName) =>
 
 // מאחד את כל הסימולציות
 const allSimulations = [
-    ...addMahozTag(danSimulations, "דן"),
-    ...addMahozTag(haifaSimulations, "חיפה"),
-    ...addMahozTag(northSimulations, "צפון"),
-    ...addMahozTag(southSimulations, "דרום"),
-    ...addMahozTag(jerusalemSimulations, "ירושלים והמרכז"),
-    ...addMahozTag(pkmazSimulations, "פקמ\"ז")
+    ...addMahozTag(danSimulations, "מחוז דן"),
+    ...addMahozTag(haifaSimulations, "מחוז חיפה"),
+    ...addMahozTag(northSimulations, "מחוז צפון"),
+    ...addMahozTag(southSimulations, "מחוז דרום"),
+    ...addMahozTag(jerusalemSimulations, "מחוז ירושלים והמרכז"),
+    ...addMahozTag(pkmazSimulations, 'מחוז פקמ"ז')
 ];
 
 export default function Simulation() {
