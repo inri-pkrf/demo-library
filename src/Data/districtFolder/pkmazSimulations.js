@@ -8,8 +8,7 @@ const pkmazSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["כביש מרכזי"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -21,7 +20,6 @@ const pkmazSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בניין מגורים"],
-      screenSize: ["מובייל"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -34,8 +32,7 @@ const pkmazSimulations = [
     tags: {
       emergency: ["שיטפון"],
       damage: ["כביש מרכזי"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -47,8 +44,7 @@ const pkmazSimulations = [
     tags: {
       emergency: ["אתר הרס"],
       damage: ["בית ספר"],
-      screenSize: ["אימרסיבי"],
-      videoType: ["תמונה HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -60,7 +56,6 @@ const pkmazSimulations = [
     tags: {
       emergency: ["מלחמה"],
       damage: ["בית חולים"],
-      screenSize: ["VR"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -73,8 +68,7 @@ const pkmazSimulations = [
     tags: {
       emergency: ['כטב"מים'],
       damage: ["בית ספר"],
-      screenSize: ["טוטם"],
-      videoType: ["סאונד"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -86,8 +80,7 @@ const pkmazSimulations = [
     tags: {
       emergency: ["צונאמי"],
       damage: ["בניין מגורים"],
-      screenSize: ["מובייל"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   }
 ];

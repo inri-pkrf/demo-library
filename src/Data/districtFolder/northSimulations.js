@@ -8,7 +8,6 @@ const northSimulations = [
         tags: {
             emergency: ["שיטפון"],
             damage: ["כביש מרכזי"],
-            screenSize: ["דסקטופ"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -21,8 +20,7 @@ const northSimulations = [
         tags: {
             emergency: ["שריפה"],
             damage: ["בית ספר"],
-            screenSize: ["מובייל"],
-            videoType: ["תמונה רחבה"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -34,8 +32,7 @@ const northSimulations = [
         tags: {
             emergency: ["מהומות"],
             damage: ["מרכז מסחרי"],
-            screenSize: ["דסקטופ"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -47,7 +44,6 @@ const northSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["שכונת מגורים"],
-            screenSize: ["VR"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -60,8 +56,7 @@ const northSimulations = [
         tags: {
             emergency: ["מהומות"],
             damage: ["תחנת רכבת"],
-            screenSize: ["דסקטופ"],
-            videoType: ["תמונה HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -73,8 +68,7 @@ const northSimulations = [
         tags: {
             emergency: ["שריפה"],
             damage: ["אזור מגורים"],
-            screenSize: ["מובייל"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -86,7 +80,6 @@ const northSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["בניין מגורים"],
-            screenSize: ["טוטם"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -99,8 +92,7 @@ const northSimulations = [
         tags: {
             emergency: ["פינוי"],
             damage: ["מתנ\"ס"],
-            screenSize: ["אימרסיבי"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -112,8 +104,7 @@ const northSimulations = [
         tags: {
             emergency: ["שריפה"],
             damage: ["שטח פתוח"],
-            screenSize: ["מובייל"],
-            videoType: ["תמונה רחבה"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -125,8 +116,7 @@ const northSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["אזור תעשייה"],
-            screenSize: ["דסקטופ"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -138,8 +128,7 @@ const northSimulations = [
         tags: {
             emergency: ["חדירה"],
             damage: ["שכונה כפרית"],
-            screenSize: ["VR"],
-            videoType: ["תמונה HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -151,7 +140,6 @@ const northSimulations = [
         tags: {
             emergency: ["שיטפון"],
             damage: ["כביש אזורי"],
-            screenSize: ["טוטם"],
             videoType: ["וידאו רחב"]
         }
     }

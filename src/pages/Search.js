@@ -157,7 +157,7 @@ export default function Search() {
                                 damage: "סוג פגיעה",
                                 screenSize: "גודל מסך",
                                 mahoz: "שם מחוז",
-                                videoType: "סוג סרטון"
+                                videoType: "סוג קובץ ההדמיה"
                             }[category]}
                             category={category}
                             tags={tags}

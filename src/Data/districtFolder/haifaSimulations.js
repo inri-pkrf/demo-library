@@ -8,8 +8,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["נמל"],
-            screenSize: ["דסקטופ"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -21,7 +20,6 @@ const haifaSimulations = [
         tags: {
             emergency: ["מהומות"],
             damage: ["כביש מרכזי"],
-            screenSize: ["מובייל"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -34,8 +32,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["מהומות"],
             damage: ["מרכז מסחרי"],
-            screenSize: ["דסקטופ"],
-            videoType: ["תמונה HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -47,8 +44,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["בניין מגורים"],
-            screenSize: ["VR"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -60,7 +56,6 @@ const haifaSimulations = [
         tags: {
             emergency: ["שריפה"],
             damage: ["בית ספר"],
-            screenSize: ["מובייל"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -73,8 +68,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["מלחמה"],
             damage: ["אזור תעשייה"],
-            screenSize: ["אימרסיבי"],
-            videoType: ["תמונה HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -86,8 +80,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["שיטפון"],
             damage: ["כביש מרכזי"],
-            screenSize: ["טוטם"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -99,8 +92,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["מהומות"],
             damage: ["מרכז עירוני"],
-            screenSize: ["דסקטופ"],
-            videoType: ["תמונה רחבה"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -112,8 +104,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["נפילת טיל"],
             damage: ["בית חולים"],
-            screenSize: ["VR"],
-            videoType: ["וידאו HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -125,7 +116,6 @@ const haifaSimulations = [
         tags: {
             emergency: ["מלחמה"],
             damage: ["אזור מגורים"],
-            screenSize: ["אימרסיבי"],
             videoType: ["וידאו רחב"]
         }
     },
@@ -138,8 +128,7 @@ const haifaSimulations = [
         tags: {
             emergency: ["שריפה"],
             damage: ["יער קהילתי"],
-            screenSize: ["מובייל"],
-            videoType: ["תמונה HD"]
+            videoType: ["וידאו רחב"]
         }
     },
     {
@@ -151,7 +140,6 @@ const haifaSimulations = [
         tags: {
             emergency: ["כטב\"מים"],
             damage: ["חוף ים"],
-            screenSize: ["דסקטופ"],
             videoType: ["וידאו רחב"]
         }
     }

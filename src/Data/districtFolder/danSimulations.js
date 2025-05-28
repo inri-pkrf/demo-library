@@ -8,8 +8,8 @@ const danSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["בניין מגורים"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -21,8 +21,8 @@ const danSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בניין מגורים"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -34,8 +34,8 @@ const danSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בית ספר"],
-      screenSize: ["מובייל"],
-      videoType: ["תמונה רחבה"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -60,8 +60,8 @@ const danSimulations = [
     tags: {
       emergency: ["צונאמי"],
       damage: ["בית חולים"],
-      screenSize: ["VR"],
-      videoType: ["סאונד"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -73,8 +73,8 @@ const danSimulations = [
     tags: {
       emergency: ["מלחמה"],
       damage: ["בניין מגורים"],
-      screenSize: ["טוטם"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -86,8 +86,8 @@ const danSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["בניין מגורים"],
-      screenSize: ["טוטם"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -99,8 +99,8 @@ const danSimulations = [
     tags: {
       emergency: ["אתר הרס"],
       damage: ["בית חולים"],
-      screenSize: ["דסקטופ"],
-      videoType: ["תמונה HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -138,8 +138,8 @@ const danSimulations = [
     tags: {
       emergency: ["שיטפון"],
       damage: ["בית ספר"],
-      screenSize: ["מובייל"],
-      videoType: ["תמונה HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -151,8 +151,8 @@ const danSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בית ספר"],
-      screenSize: ["מובייל"],
-      videoType: ["תמונה HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -164,8 +164,8 @@ const danSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["בית חולים"],
-      screenSize: ["VR"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -177,8 +177,8 @@ const danSimulations = [
     tags: {
       emergency: ["מלחמה"],
       damage: ["בית ספר"],
-      screenSize: ["טוטם"],
-      videoType: ["תמונה רחבה"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -190,7 +190,7 @@ const danSimulations = [
     tags: {
       emergency: ["צונאמי"],
       damage: ["בניין מגורים"],
-      screenSize: ["דסקטופ"],
+      screenSize: ["אימרסיבי"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -203,8 +203,8 @@ const danSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["כביש מרכזי"],
-      screenSize: ["מובייל"],
-      videoType: ["סאונד"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -216,8 +216,8 @@ const danSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["בית חולים"],
-      screenSize: ["VR"],
-      videoType: ["וידאו HD"]
+      screenSize: ["אימרסיבי"],
+      videoType: ["וידאו רחב"]
     }
   }
 ];

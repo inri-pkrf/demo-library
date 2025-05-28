@@ -8,8 +8,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["כביש מרכזי"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -21,7 +20,6 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בניין מגורים"],
-      screenSize: ["מובייל"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -34,8 +32,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["שיטפון"],
       damage: ["כביש מרכזי"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -47,8 +44,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["מלחמה"],
       damage: ["בית ספר"],
-      screenSize: ["אימרסיבי"],
-      videoType: ["תמונה HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -60,7 +56,6 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["אתר הרס"],
       damage: ["בניין מגורים"],
-      screenSize: ["VR"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -73,8 +68,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ['כטב"מים'],
       damage: ["בית חולים"],
-      screenSize: ["מובייל"],
-      videoType: ["סאונד"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -86,8 +80,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["נפילת טיל"],
       damage: ["בית ספר"],
-      screenSize: ["דסקטופ"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -99,7 +92,6 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["שריפה"],
       damage: ["בניין מגורים"],
-      screenSize: ["אימרסיבי"],
       videoType: ["וידאו רחב"]
     }
   },
@@ -112,8 +104,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["שיטפון"],
       damage: ["כביש מרכזי"],
-      screenSize: ["VR"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -125,8 +116,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["מלחמה"],
       damage: ["בית חולים"],
-      screenSize: ["טוטם"],
-      videoType: ["תמונה רחבה"]
+      videoType: ["וידאו רחב"]
     }
   },
   {
@@ -138,8 +128,7 @@ const jerusalemSimulations = [
     tags: {
       emergency: ["צונאמי"],
       damage: ["בית ספר"],
-      screenSize: ["מובייל"],
-      videoType: ["וידאו HD"]
+      videoType: ["וידאו רחב"]
     }
   }
 ];
