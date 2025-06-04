@@ -203,6 +203,7 @@ export default function Search() {
                                     <div className="simulation-thumbnail">
                                         {simulation.tags.videoType?.includes("סאונד") ? (
                                             <img
+                                                className="Audio-thumbnail"
                                                 src={`${process.env.PUBLIC_URL}/wave-sound.png`}
                                                 alt="Audio representation"
                                             />

@@ -50,6 +50,22 @@ function getDriveId(url) {
     }
 }
 
+function getDownloadUrl(sim) {
+    // אם זו תמונה או סאונד מקומי
+    if (sim.soundUrl) {
+        return `${process.env.PUBLIC_URL}${sim.soundUrl}`;
+    }
+    if (sim.imgUrl) {
+        return `${process.env.PUBLIC_URL}${sim.imgUrl}`;
+    }
+    // אם זה סרטון מ-Google Drive
+    if (sim.videoUrl) {
+        const id = getDriveId(sim.videoUrl);
+        return `https://drive.google.com/uc?export=download&id=${id}`;
+    }
+    return "#";
+}
+
 export default function Simulation() {
     const location = useLocation();
     const urlParams = new URLSearchParams(location.search);
@@ -69,12 +85,33 @@ export default function Simulation() {
         if (current) {
             const related = allSimulations
                 .filter(sim => sim.id !== current.id)
-                .filter(sim =>
-                    (sim.tags.emergency || []).some(tag => (current.tags.emergency || []).includes(tag)) ||
-                    (sim.tags.damage || []).some(tag => (current.tags.damage || []).includes(tag))
-                )
-                .slice(0, 3);
+                .map(sim => {
+                    const emergencyMatch = (sim.tags.emergency || []).some(tag =>
+                        (current.tags.emergency || []).includes(tag)
+                    );
+                    if (!emergencyMatch) return null; // רק סימולציות עם התאמה באירוע חירום
 
+                    let score = 0;
+
+                    // התאמה לפי location
+                    if (sim.location && current.location && sim.location === current.location) {
+                        score += 2;
+                    }
+
+                    // התאמה לפי videoType
+                    const currentTypes = current.tags.videoType || [];
+                    const simTypes = sim.tags.videoType || [];
+                    const hasMediaMatch = currentTypes.some(type => simTypes.includes(type));
+                    if (hasMediaMatch) {
+                        score += 2;
+                    }
+
+                    return { sim, score };
+                })
+                .filter(Boolean)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3)
+                .map(item => item.sim);
             setRelatedSimulations(related);
         }
 
@@ -170,9 +207,15 @@ export default function Simulation() {
                     <p>{simulation.description}</p>
 
                     <div className="simulation-actions">
-                        <button className="action-button download-button">
+                        <a
+                            className="action-button download-button"
+                            href={getDownloadUrl(simulation)}
+                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             הורד סימולציה
-                        </button>
+                        </a>
                         <button className="action-button share-button">
                             שתף סימולציה
                         </button>

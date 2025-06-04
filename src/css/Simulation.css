@@ -76,11 +76,11 @@
   }
 
   .simulation-image {
-       position: relative;
-    width: 56%;
-    height: 100%;
-    overflow: hidden;
-    bottom: 1rem;
+      position: relative;
+      width: 56%;
+      height: 100%;
+      overflow: hidden;
+      bottom: 1rem;
   }
 
   .video-container iframe {
@@ -139,6 +139,8 @@
   }
 
   .download-button {
+      text-align: center;
+      text-decoration: none;
       background-color: var(--primary-color);
       color: white;
   }
@@ -148,6 +150,7 @@
   }
 
   .share-button {
+      font-size: 1rem;
       background-color: var(--background-light);
       color: var(--text-light);
   }
