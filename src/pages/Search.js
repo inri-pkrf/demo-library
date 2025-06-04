@@ -10,7 +10,7 @@ import northSimulations from '../Data/districtFolder/northSimulations.js';
 import southSimulations from '../Data/districtFolder/southSimulations.js';
 import jerusalemSimulations from '../Data/districtFolder/jerusalemSimulations.js';
 import pkmazSimulations from '../Data/districtFolder/pkmazSimulations.js';
-// import aiSimulationData from '../Data/otherFolder/aiSimulationData.js';
+import aiSimulationData from '../Data/otherFolder/aiSimulationData.js';
 
 
 function getFileIdFromUrl(url) {
@@ -50,7 +50,8 @@ export default function Search() {
         ...addMahozTag(northSimulations, "מחוז צפון"),
         ...addMahozTag(southSimulations, "מחוז דרום"),
         ...addMahozTag(jerusalemSimulations, "מחוז ירושלים והמרכז"),
-        ...addMahozTag(pkmazSimulations, 'מחוז פקמ"ז')
+        ...addMahozTag(pkmazSimulations, 'מחוז פקמ"ז'),
+        ...aiSimulationData
     ];
 
     const [filteredSimulations, setFilteredSimulations] = useState([]);
@@ -68,7 +69,7 @@ export default function Search() {
         damage: ["בית חולים", "בית ספר", "בניין מגורים", "כביש מרכזי"],
         screenSize: ["מובייל", "דסקטופ", "אימרסיבי", "טוטם", "VR"],
         mahoz: ["מחוז צפון", "מחוז חיפה", "מחוז דן", "מחוז ירושלים והמרכז", "מחוז דרום", 'מחוז פקמ"ז'],
-        videoType: ["וידאו רחב", "וידאו HD", "תמונה רחבה", "תמונה HD", "סאונד"]
+        videoType: ["וידאו רחב", "וידאו HD", "תמונה רחבה", "תמונה HD", "סאונד", "AI"]
     };
 
     useEffect(() => {
@@ -199,16 +200,28 @@ export default function Search() {
                                     to={createPageUrl(`Simulation?id=${simulation.id}`)}
                                     className="simulation-card"
                                 >
-                                    <div className="simulation-thumbnail" style={{ width: '100%', height: '200px' }}>
-                                        {fileId ? (
+                                    <div className="simulation-thumbnail">
+                                        {simulation.tags.videoType?.includes("סאונד") ? (
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}/wave-sound.png`}
+                                                alt="Audio representation"
+                                            />
+
+                                        ) : simulation.tags.videoType?.some(type => type.includes("תמונה HD")) && simulation.imgUrl ? (
+                                            <img
+                                                src={`${process.env.PUBLIC_URL}${simulation.imgUrl}`}
+                                                alt="Audio representation"
+                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                            />
+                                        ) : simulation.videoUrl ? (
                                             <iframe
-                                                src={`https://drive.google.com/file/d/${fileId}/preview`}
+                                                src={`https://drive.google.com/file/d/${getFileIdFromUrl(simulation.videoUrl)}/preview`}
                                                 width="100%"
                                                 height="100%"
                                                 allow="autoplay"
                                                 allowFullScreen
                                                 title={`Preview of ${simulation.title}`}
-                                                style={{ pointerEvents: 'none' }}  
+                                                style={{ pointerEvents: 'none' }}
                                             />
                                         ) : (
                                             <p>אין תצוגת וידאו זמינה</p>
